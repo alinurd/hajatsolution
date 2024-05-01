@@ -1,4 +1,4 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+<?php defined('BASEPATH') or exit('No direct script access allowed'); ?>
 
 <!-- Section: main -->
 <section id="main">
@@ -13,74 +13,33 @@
 					<li class="breadcrumb-item active">Owner</li>
 				</ol>
 			</div>
-
 			<div class="page-content">
-				<div class="col-xs-12 col-sm-6 col-md-4 center-box">
-					dhsdh
-					<div class="content page-contact page-login">
-
-						<h1 class="page-title text-center">Owner</h1>
-
-						<!-- form start -->
-						<?php echo form_open('auth_controller/login_post'); ?>
-						<input type="hidden" name="redirect_url" value="<?php echo lang_base_url(); ?>">
-
-						<?php if (!empty($general_settings->facebook_app_id)): ?>
-							<a href="<?php echo base_url(); ?>connect-with-facebook" class="btn btn-social btn-social-facebook">
-								<i class="icon-facebook"></i>&nbsp;<?php echo trans("connect_with_facebook"); ?>
-							</a>
-						<?php endif; ?>
-						<?php if (!empty($general_settings->google_client_id)): ?>
-							<a href="<?php echo base_url(); ?>connect-with-google" class="btn btn-social btn-social-google">
-								<i class="icon-google"></i>&nbsp;<?php echo trans("connect_with_google"); ?>
-							</a>
-						<?php endif; ?>
-
-						<?php if (!empty($general_settings->facebook_app_id) || !empty($general_settings->google_client_id)): ?>
-							<p class="p-auth-modal-or">
-								<span><?php echo trans("or_login_with_email"); ?></span>
-							</p>
-						<?php endif; ?>
-
-						<!-- include message block -->
-						<?php $this->load->view('partials/_messages'); ?>
-
-						<div class="form-group has-feedback">
-							<input type="text" name="username" class="form-control"
-								   placeholder="<?php echo trans("username_or_email"); ?>"
-								   value="<?php echo html_escape(old('username')); ?>"
-								   required <?php echo ($rtl == true) ? 'dir="rtl"' : ''; ?>>
-						</div>
-
-						<div class="form-group has-feedback">
-							<input type="password" name="password" class="form-control"
-								   placeholder="<?php echo trans("password"); ?>"
-								   value="<?php echo html_escape(old('password')); ?>"
-								   required <?php echo ($rtl == true) ? 'dir="rtl"' : ''; ?>>
-						</div>
-
-						<div class="row">
-							<div class="col-sm-12 col-xs-12">
-								<button type="submit" class="btn btn-block btn-custom">
-									<?php echo html_escape(trans("login")); ?>
-								</button>
-							</div>
-							<div class="col-sm-12 col-xs-12 m-t-10">
-								<a href="<?php echo lang_base_url(); ?>forgot-password" class="link-forget">
-									<?php echo trans("forgot_password"); ?>?
-								</a>
+				<div class="row ">
+					<?php for ($i = 0; $i < 20; $i++) { ?>
+						<div class="col-xs-6 col-sm-4 col-md-3">
+							<div class="panel panel-primary">
+								<div class="panel-heading">Owner Name</div>
+								<div class="panel-body">
+									<center>
+										<img src="https://picsum.photos/150/130" alt="..."><br>
+										<span style="font-size: 10px; font-style: italic;">Hiburan, dekoarsi, potografi</span>
+									</center>
+								</div>
+								<div class="panel-footer">
+									<center>
+										<div class="btn-group" role="group" aria-label="...">
+											<button type="button" class="btn btn-info"> <span class="glyphicon glyphicon-star"> </span> 89</button>
+ 
+											<a href="<?php echo base_url('owner/detail/12'); ?>" class="btn btn-default" type="button">Detail</a>
+	 										</div>
+									</center>
+								</div>
 							</div>
 						</div>
-
-						<?php echo form_close(); ?><!-- form end -->
-
-					</div>
-
+					<?php } ?>
 				</div>
-
 			</div>
 		</div>
 	</div>
 </section>
 <!-- /.Section: main -->
-
