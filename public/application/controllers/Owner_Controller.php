@@ -17,7 +17,7 @@ class Owner_Controller extends Home_Core_Controller
 	 
 
 		$data['title'] = "Owner";
-		$data['description'] = "Owner" . " - " ;
+		$data['description'] = "Owner" ;
 		$data['keywords'] = "Owner" ;
 
 		$this->load->view('partials/_header', $data);
@@ -31,7 +31,7 @@ class Owner_Controller extends Home_Core_Controller
 		$data['keywords'] = trans("login") . "," . $this->settings->application_name;
 
 		$this->load->view('partials/_header', $data);
-		$this->load->view('auth/login');
+		$this->load->view('owner/detail');
 		$this->load->view('partials/_footer');
 	}
 }

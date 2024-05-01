@@ -17,3 +17,4 @@ application/logs/*
 /vendor/
 documentation/*
 public/install
+uploads/owner/*
