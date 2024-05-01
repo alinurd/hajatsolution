@@ -23,24 +23,40 @@
 				<div class="container">
 					<div class="panel panel-info">
 						<div class="panel-heading">Owner Name
-							 <span class="pull-right">Rekomendasi</span> 
-					</div>
+							<span class="pull-right">Rekomendasi</span>
+						</div>
 						<div class="panel-body">
 							<div class="jumbotron">
-								<img src="<?php echo base_url('uploads/owner/owner_code/jombotron.jpg'); ?>" class="img-responsive" alt="Responsive image">
+								<center> <img src="<?php echo base_url('uploads/owner/owner_code/jombotron.jpg'); ?>" class="img-responsive" alt="Responsive image">
+								</center>
 								<p>
 									<center> Hiburan, dekoarsi, potografi</center>
 								</p>
 								<center>
-								<!-- total start di postingan -->
-									<button type="button" class="btn btn-info btn-lg"> <span class="glyphicon glyphicon-star"> </span> 89</button> 
+									<!-- total start di postingan -->
+									<button type="button" class="btn btn-info btn-lg"> <span class="glyphicon glyphicon-star"> </span> 89</button>
 									<a class="btn btn-primary btn-lg" href="#" role="button"><span class="glyphicon glyphicon-thumbs-up"></span></a>
 									<br>
 									<span>pofularitas 90%</span>
 								</center>
 							</div>
-						</div> 
+						</div>
 					</div>
+					<ul class="nav nav-pills">
+						<li role="presentation" class="active"><a href="#posting" data-toggle="tab">Posting</a></li>
+						<li role="presentation"><a href="#gallery" data-toggle="tab">Gallery</a></li>
+					</ul>
+
+					<div class="tab-content">
+						<div id="posting" class="tab-pane fade in active">
+							Postingan
+						</div>
+						<div id="gallery" class="tab-pane fade">
+							Galery
+						</div>
+					</div>
+
+
 				</div>
 			</div>
 		</div>
