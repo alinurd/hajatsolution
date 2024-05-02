@@ -27,9 +27,9 @@
 							<div class="col-sm-12">
 								<?php $this->load->view('admin/post/_video_upload_box'); ?>
 							</div>
-							<div class="col-sm-12">
-								<?php $this->load->view('admin/post/_upload_file_box'); ?>
-							</div>
+							<!-- <div class="col-sm-12">
+								 $this->load->view('admin/post/_upload_file_box'); ?>
+							</div> -->
 
 							<div class="col-sm-12">
 								<div class="box">

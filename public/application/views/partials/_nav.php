@@ -9,6 +9,9 @@
                     <?php echo trans("home"); ?>
                 </a>
             </li>
+            <li class="<?php echo ($active_page == 'owner') ? 'active' : ''; ?>">
+                <a href="<?php echo base_url('owner'); ?>">Owner</a>
+            </li>
             <?php
             $total_item = 1;
             $i = 1;

@@ -70,4 +70,11 @@ class Owner_Controller extends Home_Core_Controller
 		$this->load->view('owner/booking');
 		$this->load->view('partials/_footer');
 	}
+	public function add(){
+		$data['title'] = 'owner add';
+
+        $this->load->view('admin/includes/_header', $data);
+        $this->load->view('admin/owner/add');
+        $this->load->view('admin/includes/_footer');
+	}
 }

@@ -276,6 +276,12 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="nav-ad-spaces">
+                        <a href="<?php echo admin_url(); ?>owner/add">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                            <span>Owner</span>
+                        </a>
+                    </li>
                     <li class="treeview<?php is_admin_nav_active(['add-user', 'users']); ?>">
                         <a href="#">
                             <i class="fa fa-users"></i> <span><?php echo trans("users"); ?></span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>

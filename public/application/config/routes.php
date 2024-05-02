@@ -72,6 +72,7 @@ $route['reading-list'] = 'home_controller/reading_list';
 $route['search'] = 'home_controller/search';
 
 //owner Routes
+$route['admin/owner/add'] = 'owner_controller/add';
 $route['owner'] = 'owner_controller';
 $route['owner/detail/(:num)'] = 'owner_controller/detail/{$1}'; 
 $route['owner/booking/(:num)'] = 'owner_controller/booking/{$1}'; 

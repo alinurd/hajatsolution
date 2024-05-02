@@ -14,7 +14,16 @@
             <div class="box-body">
                 <!-- include message block -->
                 <?php $this->load->view('admin/includes/_messages'); ?>
-
+                <div class="form-group ">
+      <label for="inputState">Owner</label>
+      <select id="inputState" class="form-control">
+          <option selected>- pilih Owner -</option>
+        <option >Owner 1</option>
+        <option >Owner 2</option>
+        <option >Owner 3</option>
+        <option >Owner 4</option>
+        </select>
+    </div>
                 <div class="form-group">
                     <label><?php echo trans("username"); ?></label>
                     <input type="text" name="username" class="form-control auth-form-input" placeholder="<?php echo trans("username"); ?>" value="<?php echo old("username"); ?>" required>
