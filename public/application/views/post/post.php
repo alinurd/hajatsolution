@@ -167,8 +167,10 @@
                         </div>
 
                         <div class="post-tags">
+                            <div class=""> Rp.30.000.-</div>
+                            <br>
                             <a href="#" class="btn btn-info">Lihat Owner</a> 
-                            <a href="#" class="btn btn-primary">Boking</a>
+                            <a href="#" class="btn btn-primary">Booking</a>
                         </div>
 
                         <div class="post-share">

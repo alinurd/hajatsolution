@@ -74,6 +74,7 @@ $route['search'] = 'home_controller/search';
 //owner Routes
 $route['owner'] = 'owner_controller';
 $route['owner/detail/(:num)'] = 'owner_controller/detail/{$1}'; 
+$route['owner/booking/(:num)'] = 'owner_controller/booking/{$1}'; 
 
 //rss routes
 $route['rss-feeds'] = 'home_controller/rss_feeds';

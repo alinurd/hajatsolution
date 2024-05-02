@@ -60,4 +60,14 @@ class Owner_Controller extends Home_Core_Controller
 		$this->load->view('owner/detail');
 		$this->load->view('partials/_footer');
 	}
+	
+	public function booking($id){
+		$data['title'] = trans("login");
+		$data['description'] = trans("login") . " - " . $this->settings->application_name;
+		$data['keywords'] = trans("login") . "," . $this->settings->application_name;
+
+		$this->load->view('partials/_header', $data);
+		$this->load->view('owner/booking');
+		$this->load->view('partials/_footer');
+	}
 }
