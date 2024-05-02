@@ -710,6 +710,7 @@ class Admin_controller extends Admin_Core_Controller
     public function add_user()
     {
         $data['title'] = trans("add_user");
+        $data['kategori'] = $this->category_model->get_all_categories();
 
         $this->load->view('admin/includes/_header', $data);
         $this->load->view('admin/users/add_user');
@@ -723,6 +724,8 @@ class Admin_controller extends Admin_Core_Controller
     {
         //validate inputs
         $this->form_validation->set_rules('username', trans("username"), 'required|xss_clean|min_length[4]|max_length[100]');
+        $this->form_validation->set_rules('group', trans("group"), 'required|xss_clean|min_length[4]|max_length[100]');
+        $this->form_validation->set_rules('hp', trans("hp"), 'required|xss_clean|min_length[12]|max_length[16]');
         $this->form_validation->set_rules('email', trans("email"), 'required|xss_clean|max_length[200]');
         $this->form_validation->set_rules('password', trans("password"), 'required|xss_clean|min_length[4]|max_length[50]');
 

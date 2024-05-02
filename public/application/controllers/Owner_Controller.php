@@ -77,4 +77,39 @@ class Owner_Controller extends Home_Core_Controller
         $this->load->view('admin/owner/add');
         $this->load->view('admin/includes/_footer');
 	}
+	public function add_user_post()
+    {
+        //validate inputs 
+		doi::dump($this->input->post());
+        $this->form_validation->set_rules('name', trans("username"), 'required|xss_clean|min_length[4]|max_length[100]');
+        $this->form_validation->set_rules('email', trans("email"), 'required|xss_clean|max_length[200]');
+ 
+        if ($this->form_validation->run() === false) {
+            $this->session->set_flashdata('errors', validation_errors());
+            $this->session->set_flashdata('form_data', $this->owner_model->input_values());
+            redirect($this->agent->referrer());
+        } else {
+            $email = $this->input->post('email', true);
+            $name = $this->input->post('name', true);
+            $kategori = $this->input->post('kategori', true);
+            $status = $this->input->post('status', true);
+            $alamat = $this->input->post('alamat', true);
+  
+            //is email unique
+            if (!$this->owner_model->is_unique_email($email)) {
+                $this->session->set_flashdata('form_data', $this->owner_model->input_values());
+                $this->session->set_flashdata('error', trans("email_unique_error"));
+                redirect($this->agent->referrer());
+            }
+
+            //add user
+            if ($this->owner_model->insert()) {
+                $this->session->set_flashdata('success', trans("msg_user_added"));
+            } else {
+                $this->session->set_flashdata('error', trans("msg_error"));
+            }
+
+            redirect($this->agent->referrer());
+        }
+    }
 }

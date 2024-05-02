@@ -8,6 +8,11 @@ class Auth_model extends CI_Model
         $data = array(
             'username' => remove_forbidden_characters($this->input->post('username', true)),
             'email' => remove_forbidden_characters($this->input->post('email', true)),
+            'group' => remove_forbidden_characters($this->input->post('group', true)),
+            'pimpinan' => remove_forbidden_characters($this->input->post('pimpinan', true)),
+            'alamat' => remove_forbidden_characters($this->input->post('alamat', true)),
+            'kategori' => remove_forbidden_characters($this->input->post('kategori', true)),
+            'alamat' => remove_forbidden_characters($this->input->post('alamat', true)),
             'password' => $this->input->post('password', true)
         );
         return $data;

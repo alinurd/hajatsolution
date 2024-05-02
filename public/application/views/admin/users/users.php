@@ -44,7 +44,7 @@
                                     <?php if ($user->role == "admin"): ?>
                                         <label class="label bg-olive"><?php echo trans('admin'); ?></label>
                                     <?php elseif ($user->role == "author"): ?>
-                                        <label class="label label-warning"><?php echo trans('author'); ?></label>
+                                        <label class="label label-warning">Group</label>
                                     <?php else: ?>
                                         <label class="label label-default"><?php echo trans('user'); ?></label>
                                     <?php endif; ?>
