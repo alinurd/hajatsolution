@@ -40,6 +40,7 @@ class File_model extends CI_Model
     //get image
     public function get_image($id)
     {
+        
         $this->db->where('id', $id);
         $query = $this->db->get('images');
         return $query->row();
@@ -51,6 +52,8 @@ class File_model extends CI_Model
         if ($this->general_settings->file_manager_show_all_files != 1) {
             $this->db->where('user_id', $this->auth_user->id);
         }
+        $this->db->where('user_id', $this->auth_user->id);
+
         $this->db->order_by('id', 'DESC');
         $this->db->limit($count);
         $query = $this->db->get('images');
