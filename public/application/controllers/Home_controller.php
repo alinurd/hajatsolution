@@ -20,7 +20,7 @@ class Home_controller extends Home_Core_Controller
         $data['keywords'] = $this->settings->keywords;
         $data['home_title'] = $this->settings->home_title;
         
-
+ 
         //slider posts
         $this->slider_posts = get_cached_data('slider_posts');
         if (empty($this->slider_posts)) {

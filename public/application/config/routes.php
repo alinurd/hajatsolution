@@ -64,8 +64,7 @@ $route['index'] = 'home_controller/index';
 $route['error-404'] = 'home_controller/error_404';
 
 $route['gallery'] = 'home_controller/gallery';
-$route['gallery'] = 'home_controller/gallery';
-$route['gallery/album/(:num)'] = 'home_controller/gallery_album/$1';
+ $route['gallery/album/(:num)'] = 'home_controller/gallery_album/$1';
 $route['contact'] = 'home_controller/contact';
 $route['profile/(:any)'] = 'profile_controller/profile/$1';
 $route['tag/(:any)'] = 'home_controller/tag/$1';
