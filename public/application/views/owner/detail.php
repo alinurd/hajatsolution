@@ -102,9 +102,6 @@
 							</section>
 						</div>
 
-
-
-						
 						<div id="gallery" class="tab-pane fade">
 							Galery
 						</div>
