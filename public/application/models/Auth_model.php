@@ -493,6 +493,18 @@ class Auth_model extends CI_Model
         return $query->result();
         
     }
+    public function get_group_id($id)
+    {
+        $id = str_replace(array('{', '}'), '', $id);
+
+        $this->db->select('users.*, categories.name as kategori_nama');
+        $this->db->from('users');
+        $this->db->join('categories', 'users.kategori = categories.id');
+          $this->db->where('users.id', $id);
+         $query = $this->db->get();
+        return $query->row();
+        
+    }
 
     //get last users
     public function get_last_users()

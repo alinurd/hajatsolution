@@ -33,7 +33,7 @@ class Owner_Controller extends Home_Core_Controller
 			 $this->slider_posts = $this->post_model->get_slider_posts();
 			 set_cache_data('slider_posts', $this->slider_posts);
 		 }
- 
+         
 		 $count_key = 'posts_count';
 		 $posts_key = 'posts';
 		 //posts count
@@ -52,8 +52,8 @@ class Owner_Controller extends Home_Core_Controller
 
 		 
 
-		 
-		$data['title'] = trans("login");
+		$data['k'] = $this->auth_model->get_group_id($id);
+ 		$data['title'] = trans("login");
 		$data['description'] = trans("login") . " - " . $this->settings->application_name;
 		$data['keywords'] = trans("login") . "," . $this->settings->application_name;
 

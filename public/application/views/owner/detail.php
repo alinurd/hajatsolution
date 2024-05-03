@@ -14,27 +14,27 @@
 						<a href="<?php echo base_url('owner'); ?>">Owner</a>
 					</li>
 					<li class="breadcrumb-item">
-						<a href="#">Detail</a>
+						<a href="#">Detail-> <?= ucwords($k->slug) ?></a>
 					</li>
-					<li class="breadcrumb-item active"> <b>Owner Name</b></li>
+					<li class="breadcrumb-item active"> <b><?= ucwords($k->slug) ?></b></li>
 				</ol>
 			</div>
 			<div class="page-content ">
 				<div class="container">
 					<div class="panel panel-info">
-						<div class="panel-heading">Owner Name
+						<div class="panel-heading"><?= ucwords($k->group) ?>
 							<span class="pull-right">Rekomendasi</span>
 						</div>
 						<div class="panel-body">
 							<div class="jumbotron">
-								<center> <img src="<?php echo base_url('uploads/owner/owner_code/jombotron.jpg'); ?>" class="img-responsive" alt="Responsive image">
+								<center> <img src="<?= base_url($k->avatar) ?>" alt="Tidak Ada Logo"  class="img-responsive" alt="Responsive image">
 								</center>
 								<p>
-									<center> Hiburan, dekoarsi, potografi</center>
+									<center> <?= ucwords($k->kategori_nama) ?></center>
 								</p>
 								<center>
 									<!-- total start di postingan -->
-									<button type="button" class="btn btn-info btn-lg"> <span class="glyphicon glyphicon-star"> </span> 89</button>
+									<button type="button" class="btn btn-info btn-lg"> <span class="glyphicon glyphicon-star"> </span> <?= ucwords($k->star) ?></button>
 									<a class="btn btn-primary btn-lg" href="#" role="button"><span class="glyphicon glyphicon-thumbs-up"></span></a>
 									<br>
 									<br>
