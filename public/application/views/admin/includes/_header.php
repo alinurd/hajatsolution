@@ -277,9 +277,9 @@
                         </ul>
                     </li>
                     <li class="nav-ad-spaces">
-                        <a href="<?php echo admin_url(); ?>owner/add">
-                            <i class="fa fa-user" aria-hidden="true"></i>
-                            <span>Owner</span>
+                        <a href="<?php echo admin_url(); ?>owner/list_booking">
+                            <i class="glyphicon glyphicon-list-alt" aria-hidden="true"></i>
+                            <span>Daftar Booking</span>
                         </a>
                     </li>
                     <li class="treeview<?php is_admin_nav_active(['add-user', 'users']); ?>">

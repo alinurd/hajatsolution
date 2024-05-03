@@ -1023,4 +1023,19 @@ class Admin_controller extends Admin_Core_Controller
         $this->session->set_flashdata('mes_table', 1);
     }
 
+    public function list_booking()
+    {
+        //check if admin
+        if ($this->auth_model->is_admin() == false) {
+            redirect('login');
+        }
+
+        $data['title'] = trans("users");
+        $data['users'] = $this->auth_model->get_users();
+        $this->load->view('admin/includes/_header', $data);
+        $this->load->view('admin/owner/list_booking', $data);
+        $this->load->view('admin/includes/_footer');
+    }
+
+
 }

@@ -3,6 +3,18 @@
 class Owner_model extends CI_Model
 {
 
+    public function set_filter_query()
+	{
+        
+		$this->db->join('users', 'posts.user_id = users.id');
+		$this->db->join('categories', 'posts.category_id = categories.id');
+		$this->db->select('posts.* , users.username as username, users.slug as user_slug, categories.name as category_name, categories.slug as category_slug, categories.parent_id as category_parent_id, 
+		(SELECT slug FROM categories WHERE id = category_parent_id) as parent_category_slug, (SELECT COUNT(comments.id) FROM comments WHERE comments.post_id = posts.id AND comments.parent_id = 0 AND status = 1) as comment_count');
+		$this->db->where('posts.visibility', 1);
+		$this->db->where('posts.status', 1);
+		$this->db->where('posts.lang_id', $this->selected_lang->id);
+	}
+
     public function booking_values()
     {
         $data = array(
@@ -22,9 +34,6 @@ class Owner_model extends CI_Model
     {
 
         $data = $this->owner_model->booking_values();
-
-
-
         $datax['group_id'] = $data['group_id'];
         $datax['tanggal'] = $data['tanggal_acara'];
         $datax['post_id'] = $data['post_id'];
@@ -36,6 +45,19 @@ class Owner_model extends CI_Model
         $data['code'] = generate_code_trans();
         $data["created_at"] = date('Y-m-d H:i:s');
         return $this->db->insert('booking', $data);
+    }
+    
+    public function get_list_booking()
+    {
+        // $this->set_filter_query();
+		$this->db->select('booking.*, booking.status as status_booking, posts.*, users.*');
+$this->db->from('booking');
+$this->db->join('posts', 'booking.post_id = posts.id');
+$this->db->join('users', 'booking.group_id = users.id');
+$this->db->order_by('booking.created_at', 'DESC');
+$query = $this->db->get();
+return $query->result();
+
     }
 
   //check if email is unique

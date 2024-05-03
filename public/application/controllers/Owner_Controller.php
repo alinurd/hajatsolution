@@ -111,39 +111,54 @@ class Owner_Controller extends Home_Core_Controller
 		$this->load->view('admin/owner/add');
 		$this->load->view('admin/includes/_footer');
 	}
-	public function add_user_post()
-	{
-		//validate inputs 
-		doi::dump($this->input->post());
-		$this->form_validation->set_rules('name', trans("username"), 'required|xss_clean|min_length[4]|max_length[100]');
-		$this->form_validation->set_rules('email', trans("email"), 'required|xss_clean|max_length[200]');
+ 
+	public function list_booking()
+    {
+        //check if admin
+        if ($this->auth_model->is_admin() == false) {
+            redirect('login');
+        }
 
-		if ($this->form_validation->run() === false) {
-			$this->session->set_flashdata('errors', validation_errors());
-			$this->session->set_flashdata('form_data', $this->owner_model->input_values());
-			redirect($this->agent->referrer());
-		} else {
-			$email = $this->input->post('email', true);
-			$name = $this->input->post('name', true);
-			$kategori = $this->input->post('kategori', true);
-			$status = $this->input->post('status', true);
-			$alamat = $this->input->post('alamat', true);
+        $data['title'] = trans("users");
+        $data['data'] = $this->owner_model->get_list_booking();
+        $this->load->view('admin/includes/_header', $data);
+        $this->load->view('admin/owner/list_booking', $data);
+        $this->load->view('admin/includes/_footer');
+    }
 
-			//is email unique
-			if (!$this->owner_model->is_unique_email($email)) {
-				$this->session->set_flashdata('form_data', $this->owner_model->input_values());
-				$this->session->set_flashdata('error', trans("email_unique_error"));
-				redirect($this->agent->referrer());
-			}
+	public function booking_options_post()
+    {
+        prevent_author();
 
-			//add user
-			if ($this->owner_model->insert()) {
-				$this->session->set_flashdata('success', trans("msg_user_added"));
-			} else {
-				$this->session->set_flashdata('error', trans("msg_error"));
-			}
+        //check if admin
+        if (is_admin() == false) {
+            redirect('login');
+        }
 
-			redirect($this->agent->referrer());
-		}
-	}
+        $option = $this->input->post('option', true);
+        $id = $this->input->post('id', true);
+
+        //if option ban
+        if ($option == 'ban') {
+            if ($this->auth_model->ban_user($id)) {
+                $this->session->set_flashdata('success', trans("msg_user_banned"));
+                redirect($this->agent->referrer());
+            } else {
+                $this->session->set_flashdata('error', trans("msg_error"));
+                redirect($this->agent->referrer());
+            }
+        }
+
+        //if option remove ban
+        if ($option == 'remove_ban') {
+            if ($this->auth_model->remove_user_ban($id)) {
+                $this->session->set_flashdata('success', trans("msg_ban_removed"));
+                redirect($this->agent->referrer());
+            } else {
+                $this->session->set_flashdata('error', trans("msg_error"));
+                redirect($this->agent->referrer());
+            }
+        }
+    }
+
 }
