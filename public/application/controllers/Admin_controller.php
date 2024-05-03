@@ -764,7 +764,7 @@ class Admin_controller extends Admin_Core_Controller
     /**
      * Change User Role
      */
-    public function change_user_role_post()
+    public function update_pembayaran()
     {
         //check if admin
         if ($this->auth_model->is_admin() == false) {

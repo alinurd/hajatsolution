@@ -99,25 +99,25 @@
                 <h4 class="modal-title">Tenor Pembayaran</h4>
             </div>
             <?php echo form_open('owner_controller/update_pembayaran'); ?>
+            <input type="hidden" name="user_id" id="modal_user_id" value="">
             <div class="modal-body">
                 <div class="form-group">
-                         <label for="role_admin" class="">jumlah Pembayaran</label>
-                        <input type="number" id="role_admin" name="jumlah" value="admin" class="form-control" >
+                         <label for="jml" class="">jumlah Pembayaran</label>
+                        <input type="number" id="jml" name="jumlah" value="admin" class="form-control" >
                  </div>
                 <div class="form-group">
 
                     <div class="row">
-                        <input type="hidden" name="user_id" id="modal_user_id" value="">
                         <div class="col-sm-4 col-xs-12 col-option">
-                            <input type="radio" id="role_admin" name="tenor" value="admin" class="square-purple" checked>
+                            <input type="radio" id="role_admin" name="tenor" value="1" class="square-purple" checked>
                             <label for="role_admin" class="cursor-pointer">Pembayaran ke 1</label>
                         </div>
                         <div class="col-sm-4 col-xs-12 col-option">
-                            <input type="radio" id="role_author" name="tenor" value="author" class="square-purple">
+                            <input type="radio" id="role_author" name="tenor" value="2" class="square-purple">
                             <label for="role_author" class="cursor-pointer">Pembayaran ke 2</label>
                         </div>
                         <div class="col-sm-4 col-xs-12 col-option">
-                            <input type="radio" id="role_user" name="tenor" value="user" class="square-purple">
+                            <input type="radio" id="role_user" name="tenor" value="3" class="square-purple">
                             <label for="role_user" class="cursor-pointer">Pembayaran ke 3</label>
                         </div>
 

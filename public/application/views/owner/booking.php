@@ -58,61 +58,50 @@
 									</div>
 									<div class="form-group">
 										<label class="control-label">Tanggal Acara :</label>
-										<input type="date" class="form-control" name="tgl"  required>
+										<input type="date" class="form-control" name="tgl" required>
+									</div>
+									<div class="form-group">
+										<label class="control-label">Tenor Pembayaran :</label>
+										<div class="input-group">
+											<span class="input-group-btn">
+												<button class="btn btn-primary btn-md" id="tenoskurang" type="button">-</button>
+											</span>
+											<input id="tenorInput" type="text" readonly class="form-control text-center col-md-6" name="tenor" placeholder="Tenor Pembayaran" value="1">
+											<span class="input-group-btn">
+												<button class="btn btn-primary btn-md" id="tenortambah" type="button">+</button>
+											</span>
+										</div>
 									</div>
 
+
 									<div class="form-group">
-										<div class="row">
-											<div class="col-sm-3 col-xs-12">
-												<label>Tenor Pembayaran :</label>
-											</div>
-											<div class="col-md-2 col-sm-4 col-xs-12 col-option">
-												<input type="radio" id="rb_tenor_1" name="tenor" value="1" class="square-purple" checked>
-												<label for="rb_tenor_1" class="cursor-pointer">1 Kali</label>
-											</div>
-											<div class="col-md-2 col-sm-4 col-xs-12 col-option">
-												<input type="radio" id="rb_tenor_2" name="tenor" value="0" class="square-purple">
-												<label for="rb_tenor_2" class="cursor-pointer">2 Kali</label>
-											</div>
-											<div class="col-md-2 col-sm-4 col-xs-12 col-option">
-												<input type="radio" id="rb_tenor_2" name="tenor" value="0" class="square-purple">
-												<label for="rb_tenor_2" class="cursor-pointer">3 Kali</label>
-											</div>
-										</div>
+										<label class="control-label">Alamat Lengkap:</label>
+										<textarea class="form-control text-area" name="alamat" placeholder="Contoh:  Kampung Baru RT 001 RW 002, Desa Mulya, Kecamatan Sejahtera, Kabupaten Maju Jaya, Provinsi Sejahtera " <?php echo ($rtl == true) ? 'dir="rtl"' : ''; ?> required><?php echo old('alamat'); ?></textarea>
+									</div>
 
-										<div class="form-group">
-											<label class="control-label">Alamat Lengkap:</label>
-											<textarea class="form-control text-area" name="alamat" placeholder="Contoh:  Kampung Baru RT 001 RW 002, Desa Mulya, Kecamatan Sejahtera, Kabupaten Maju Jaya, Provinsi Sejahtera " <?php echo ($rtl == true) ? 'dir="rtl"' : ''; ?> required><?php echo old('alamat'); ?></textarea>
-
-										</div>
-
-										<div class="">
-											<center>
-												<h6> Harga Rp.
+									<div class="">
+										<center>
+											<h6> Harga Rp.
 												<?php echo html_escape($k->harga !== null && $k->harga !== 0 ? number_format($k->harga) : '0'); ?>
-												</h6>
-												<h6>Biaya penanganan: Rp. 120.000</h6>
-												<h6>Total Bayar: <b>Rp. <span id="ttlBayar">
-												<?php
-												$harga=$k->harga+120000;
-												 echo html_escape($k->harga !== null && $k->harga !== 0 ? number_format($harga) : '0'); ?>
-												</span></b></h6>
-											</center>
-										</div><br>
-										<div>
-											<center>
-												<button class=" btn btn-primary">Booking Sekarang</button><br><br>
-												<a style="color:blue" target="_blank" href="https://wa.me/6285717570339?text=Halo%20Admin,%20saya%20tertarik%20 <?=$k->nama_kategori?>%20dari%20grup%20<?=$k->group?>%20(<?=$k->title?>)%20apakah%20boleh%20tanya-tanya%20dulu%3F">Tanya-Tanya Dulu?</a>
-											</center>
-										</div>
+											</h6>
+											<h6>Biaya penanganan: Rp. 120.000</h6>
+											<h6>Total Bayar: <b>Rp. <span id="ttlBayar">
+														<?php
+														$harga = $k->harga + 120000;
+														echo html_escape($k->harga !== null && $k->harga !== 0 ? number_format($harga) : '0'); ?>
+													</span></b></h6>
+										</center>
+									</div><br>
+									<div>
+										<center>
+											<button class=" btn btn-primary">Booking Sekarang</button><br><br>
+											<a style="color:blue" target="_blank" href="https://wa.me/6285717570339?text=Halo%20Admin,%20saya%20tertarik%20 <?= $k->nama_kategori ?>%20dari%20grup%20<?= $k->group ?>%20(<?= $k->title ?>)%20apakah%20boleh%20tanya-tanya%20dulu%3F">Tanya-Tanya Dulu?</a>
+										</center>
 									</div>
 								</div>
 							</div>
 							<?php echo form_close(); ?>
-
 						</div>
-
-
 					</div>
 				</div>
 			</div>
@@ -120,3 +109,20 @@
 </section>
 <!-- /.Section: main -->
 
+<script>
+	$(document).ready(function() {
+		$('#tenortambah').click(function() {
+			var value = parseInt($('#tenorInput').val()) || 0;
+			$('#tenorInput').val(value + 1);
+		});
+
+		$('#tenoskurang').click(function() {
+			var value = parseInt($('#tenorInput').val()) || 0;
+			if (value > 1) {
+				$('#tenorInput').val(value - 1);
+			} else {
+				alert("Tenor Pembayaran Minimal 1 Kali")
+			}
+		});
+	});
+</script>
