@@ -3,7 +3,7 @@
 <div class="box">
     <div class="box-header with-border">
         <div class="left">
-            <h3 class="box-title"><?php echo trans('users'); ?></h3>
+            <h3 class="box-title"><?php echo $title; ?></h3>
         </div>
     </div><!-- /.box-header -->
 

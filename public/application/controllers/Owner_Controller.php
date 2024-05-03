@@ -119,7 +119,7 @@ class Owner_Controller extends Home_Core_Controller
             redirect('login');
         }
 
-        $data['title'] = trans("users");
+        $data['title'] ="Daftar Booking Acara";
         $data['data'] = $this->owner_model->get_list_booking();
         $this->load->view('admin/includes/_header', $data);
         $this->load->view('admin/owner/list_booking', $data);
