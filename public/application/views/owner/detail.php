@@ -16,21 +16,41 @@
 					<li class="breadcrumb-item">
 						<a href="#">Detail</a>
 					</li>
-					<li class="breadcrumb-item active"> <b><?= ucwords($k->slug) ?></b></li>
+					<li class="breadcrumb-item active"> <b>
+							<?php if ($k->role === 'admin') : ?>
+								<center>Management Aplikasi</center>
+							<?php else : ?>
+								<center><?= ucwords($k->slug) ?></center>
+							<?php endif; ?>
+						</b></li>
 				</ol>
 			</div>
 			<div class="page-content ">
 				<div class="container">
 					<div class="panel panel-info">
-						<div class="panel-heading"><?= ucwords($k->group) ?>
-							<span class="pull-right">Rekomendasi</span>
+						<div class="panel-heading">
+							<?php if ($k->role === 'admin') : ?>
+								<center>Management Aplikasi</center>
+							<?php else : ?>
+								<?= ucwords($k->group) ?> 
+								<span class="pull-right">Rekomendasi</span>
+							<?php endif; ?>
+
+
 						</div>
 						<div class="panel-body">
 							<div class="jumbotron">
-								<center> <img src="<?= base_url($k->avatar) ?>" alt="Tidak Ada Logo"  class="img-responsive" alt="Responsive image">
+								<center> <img src="<?= base_url($k->avatar) ?>" alt="Tidak Ada Logo" class="img-responsive" alt="Responsive image">
 								</center>
 								<p>
-									<center> <?= ucwords($k->kategori_nama) ?></center>
+									<center>
+										<?php if ($k->role === 'admin') : ?>
+											<center>Management Aplikasi</center>
+										<?php else : ?>
+											<center><?= ucwords($k->kategori_nama) ?></center>
+										<?php endif; ?>
+
+									</center>
 								</p>
 								<center>
 									<!-- total start di postingan -->
@@ -38,11 +58,13 @@
 									<a class="btn btn-primary btn-lg" href="#" role="button"><span class="glyphicon glyphicon-thumbs-up"></span></a>
 									<br>
 									<br>
-									Tanggal Booking: <br>
-									<span class="badge badge-info"><?= date("d-m-Y") ?></span>
-									<span class="badge badge-info"><?= date("d-m-Y") ?></span>
-									<span class="badge badge-info"><?= date("d-m-Y") ?></span>
-									<span class="badge badge-info"><?= date("d-m-Y") ?></span>
+									<?php if ($k->role != 'admin') : ?>
+										Tanggal Booking: <br>
+										<span class="badge badge-info"><?= date("d-m-Y") ?></span>
+										<span class="badge badge-info"><?= date("d-m-Y") ?></span>
+										<span class="badge badge-info"><?= date("d-m-Y") ?></span>
+										<span class="badge badge-info"><?= date("d-m-Y") ?></span>
+									<?php endif; ?>
 								</center>
 							</div>
 						</div>

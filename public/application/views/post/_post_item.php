@@ -28,10 +28,11 @@
                     <i class="icon-arrow-right read-more-i" aria-hidden="true"></i>
                 </a>
                 
-                <div class=""> Rp.30.000.-</div>
+                <div class="">Rp. <?php echo $item->harga !== null && $item->harga !== 0 ? number_format($item->harga) : '0'; ?>
+</div>
                             <br>
                             <center>
-                            <a href="<?php echo base_url('owner/detail/12'); ?>" class="btn btn-info">Lihat Owner</a> 
+                            <a href="<?php echo base_url('owner/detail/'.$item->user_id); ?>" class="btn btn-info">Lihat Owner</a> 
                             <a href="<?php echo base_url('owner/booking/'.$item->id); ?>" class="btn btn-primary">Booking</a>
                             </center>
             </div>
