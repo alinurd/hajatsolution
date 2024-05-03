@@ -29,6 +29,17 @@ class Post_model extends CI_Model
 		$query = $this->db->get('posts');
 		return $query->row();
 	}
+	public function get_post_and_user_by_post_id($id)
+	{
+		$this->db->select('posts.*, users.*, categories.name AS nama_kategori');
+		$this->db->from('posts');
+		$this->db->join('users', 'posts.user_id = users.id');
+		$this->db->join('categories', 'posts.category_id = categories.id');
+		$this->db->where('posts.id', $id);
+		$query = $this->db->get();
+		return $query->row();
+		
+	}
 
 	//get all posts
 	public function get_posts()

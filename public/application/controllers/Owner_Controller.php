@@ -65,11 +65,14 @@ class Owner_Controller extends Home_Core_Controller
 	}
 	
 	public function booking($id){
-		$data['title'] = trans("login");
-		$data['description'] = trans("login") . " - " . $this->settings->application_name;
-		$data['keywords'] = trans("login") . "," . $this->settings->application_name;
+		$id = str_replace(array('{', '}'), '', $id);
 
-		$this->load->view('partials/_header', $data);
+		$k=$this->post_model->get_post_and_user_by_post_id($id);
+		$data['k'] = $k;
+		$data['title'] = "Booking-".$k->title;
+		$data['description'] = "Booking-".$k->title . " - " . $this->settings->application_name;
+		$data['keywords'] = "Booking-".$k->title . "," . $this->settings->application_name;
+ 		$this->load->view('partials/_header', $data);
 		$this->load->view('owner/booking');
 		$this->load->view('partials/_footer');
 	}

@@ -22,74 +22,24 @@
 			<div class="page-content ">
 				<div class="container">
 					<div class="panel panel-primary">
-						<div class="panel-heading">Product name
-							<span class="pull-right">Owner Name</span>
+						<div class="panel-heading"><?= $k->title ?>
+							<span class="pull-right"><?= $k->group ?></span>
 						</div>
 						<div class="panel-body">
 							<b>Form Booking</b>
-							<button class="btn btn-secondary pull-right" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapseExample1 multiCollapseExample2">Lihat Product dan Owner</button><br><br>
+							<!-- <button class="btn btn-secondary pull-right" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapseExample1 multiCollapseExample2">Lihat Product dan Owner</button><br><br> -->
 							<div class="jumbotron">
-								<div class="row">
-
-									<div class="col-sm-6 col-xs-6">
-										<div class="collapse multi-collapse" id="multiCollapseExample1">
-											<div class="panel panel-primary">
-												<div class="panel-body">
-													<div class="card card-body">
-														<div class="jumbotron">
-															<center> <img src="<?php echo base_url('uploads/owner/owner_code/jombotron.jpg'); ?>" class="img-responsive" alt="Responsive image">
-															</center>
-															<p>
-																<center> Hiburan, dekoarsi, potografi</center>
-															</p>
-															<center>
-																<!-- total start di postingan -->
-																<button type="button" class="btn btn-info btn-lg"> <span class="glyphicon glyphicon-star"> </span> 89</button>
-																<a class="btn btn-primary btn-lg" href="#" role="button"><span class="glyphicon glyphicon-thumbs-up"></span></a>
-																<br>
-																<br>
-																Tanggal Booking: <br>
-																<span class="badge badge-info"><?= date("d-m-Y") ?></span>
-																<span class="badge badge-info"><?= date("d-m-Y") ?></span>
-																<span class="badge badge-info"><?= date("d-m-Y") ?></span>
-																<span class="badge badge-info"><?= date("d-m-Y") ?></span>
-															</center>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="col-sm-6 col-xs-12">
-										<div class="collapse multi-collapse" id="multiCollapseExample1">
-											<div class="panel panel-primary">
-												<div class="panel-body">
-													<div class="card card-body">
-														<div class="jumbotron">
-															<center> <img src="<?php echo base_url('uploads/owner/owner_code/jombotron.jpg'); ?>" class="img-responsive" alt="Responsive image">
-															</center>
-															<p>
-																<center> Hiburan, dekoarsi, potografi</center>
-															</p>
-															<center>
-																<!-- total start di postingan -->
-																<button type="button" class="btn btn-info btn-lg"> <span class="glyphicon glyphicon-star"> </span> 89</button>
-																<a class="btn btn-primary btn-lg" href="#" role="button"><span class="glyphicon glyphicon-thumbs-up"></span></a>
-																<br>
-																<br>
-																Tanggal Booking: <br>
-																<span class="badge badge-info"><?= date("d-m-Y") ?></span>
-																<span class="badge badge-info"><?= date("d-m-Y") ?></span>
-																<span class="badge badge-info"><?= date("d-m-Y") ?></span>
-																<span class="badge badge-info"><?= date("d-m-Y") ?></span>
-															</center>
-														</div>
-													</div>
-												</div>
+								<div class="panel panel-primary">
+									<div class="panel-body">
+										<div class="card card-body">
+											<div class="jumbotron">
+												<center>
+													<?php $this->load->view("post/_post_image_booking", ['post_item' => $k, 'type' => 'image_small']); ?></center>
 											</div>
 										</div>
 									</div>
 								</div>
+
 
 								<div class="list-group">
 									<div class="form-group">
@@ -126,21 +76,27 @@
 
 										<div class="form-group">
 											<label class="control-label">Alamat Lengkap:</label>
-											<textarea class="form-control text-area" name="question" placeholder="Alamat lengkap: Kampung-Rt/Rw-Desa-Kecamatan-Kabupaten-Provnsi" <?php echo ($rtl == true) ? 'dir="rtl"' : ''; ?> required><?php echo old('question'); ?></textarea>
+											<textarea class="form-control text-area" name="question" placeholder="Contoh:  Kampung Baru RT 001 RW 002, Desa Mulya, Kecamatan Sejahtera, Kabupaten Maju Jaya, Provinsi Sejahtera " <?php echo ($rtl == true) ? 'dir="rtl"' : ''; ?> required><?php echo old('question'); ?></textarea>
 
 										</div>
 
 										<div class="">
-										<center>
-										<h6>Harga: Rp. 2708000</h6>
-										<h6>Biaya penanganan: Rp. 2708000</h6>
-										<h6>Total Bayar: <b>Rp. 2708000</b></h6> 	
-										</center>
+											<center>
+												<h6> Harga Rp.
+												<?php echo html_escape($k->harga !== null && $k->harga !== 0 ? number_format($k->harga) : '0'); ?>
+												</h6>
+												<h6>Biaya penanganan: Rp. 120.000</h6>
+												<h6>Total Bayar: <b>Rp. <span id="ttlBayar">
+												<?php
+												$harga=$k->harga+120000;
+												 echo html_escape($k->harga !== null && $k->harga !== 0 ? number_format($harga) : '0'); ?>
+												</span></b></h6>
+											</center>
 										</div><br>
 										<div>
 											<center>
-											<!-- <button class=" btn btn-info">Ajukan Penawaran</button> -->
-											<button class=" btn btn-primary">Booking Sekarang</button>
+												<button class=" btn btn-primary">Booking Sekarang</button><br><br>
+												<a style="color:blue" target="_blank" href="https://wa.me/6285717570339?text=Halo%20Admin,%20saya%20tertarik%20 <?=$k->nama_kategori?>%20dari%20grup%20<?=$k->group?>%20(<?=$k->title?>)%20apakah%20boleh%20tanya-tanya%20dulu%3F">Tanya-Tanya Dulu?</a>
 											</center>
 										</div>
 									</div>
@@ -155,3 +111,4 @@
 		</div>
 </section>
 <!-- /.Section: main -->
+
