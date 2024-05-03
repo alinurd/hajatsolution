@@ -23,7 +23,7 @@
 									<center>
 									<img src="<?= base_url($k->avatar) ?>" alt="Tidak Ada Logo" width="150" height="130">
 										<br><span style="font-size: 10px;"> <b>Pimpinan: <?= strtoupper($k->pimpinan) ?></b></span><br>
-										<span class="badge badge-primary"><?=$k->kategori?></span>
+										<span class="badge badge-primary"><?=$k->kategori_nama?></span>
 									</center>
 								</div>
 								<div class="panel-footer">

@@ -483,11 +483,15 @@ class Auth_model extends CI_Model
     }
     public function get_group()
     {
-        $this->db->where('role =', 'author');
-        $this->db->where('status !=',0);
-        $this->db->where('avatar !=',null);
-        $query = $this->db->get('users');
+        $this->db->select('users.*, categories.name as kategori_nama');
+        $this->db->from('users');
+        $this->db->join('categories', 'users.kategori = categories.id');
+        $this->db->where('users.role', 'author');
+        $this->db->where('users.status !=', 0);
+        $this->db->where('users.avatar IS NOT NULL');
+        $query = $this->db->get();
         return $query->result();
+        
     }
 
     //get last users
