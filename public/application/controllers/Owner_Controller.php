@@ -160,29 +160,24 @@ class Owner_Controller extends Home_Core_Controller
             }
         }
     }
-	public function change_user_role_post()
+	public function update_pembayaran()
     {
         //check if admin
         if ($this->auth_model->is_admin() == false) {
             redirect('login');
         }
 
-        $id = $this->input->post('user_id', true);
-        $role = $this->input->post('role', true);
+        $id = $this->input->post('id_booking', true);
+        $jml = $this->input->post('jumlah', true);
+        $tenor = $this->input->post('tenor', true);
+        $ub = $this->owner_model->update_pembayaran($id, $jml, $tenor);
 
-        $user = $this->auth_model->get_user($id);
-
-        //check if exists
-        if (empty($user)) {
+        if ($ub) {
+			$this->session->set_flashdata('success', "Pembaran Berhasil Diupdate");
             redirect($this->agent->referrer());
         } else {
-            if ($this->auth_model->change_user_role($id, $role)) {
-                $this->session->set_flashdata('success', trans("msg_role_changed"));
-                redirect($this->agent->referrer());
-            } else {
-                $this->session->set_flashdata('error', trans("msg_error"));
-                redirect($this->agent->referrer());
-            }
+			$this->session->set_flashdata('error', trans("msg_error"));
+			redirect($this->agent->referrer());
         }
     }
 	
