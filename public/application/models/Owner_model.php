@@ -74,6 +74,12 @@ class Owner_model extends CI_Model
         $query = $this->db->get("bayar");
         return $query->result();
     }
+    public function get_jadwal($id)
+    {
+        $this->db->where('group_id', $id);
+        $query = $this->db->get("jadwal");
+        return $query->result();
+    }
 
     public function update_pembayaran($id, $jml, $tenor)
     {

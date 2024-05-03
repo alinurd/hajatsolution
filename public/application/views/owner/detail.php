@@ -32,14 +32,19 @@
 							<?php if ($k->role === 'admin') : ?>
 								<center>Management Aplikasi</center>
 							<?php else : ?>
-								<?= ucwords($k->group) ?> 
-								<span class="pull-right">Rekomendasi</span>
+								<?= ucwords($k->group) ?>
+								<span class="pull-right">
+									<div class="row-custom">
+										<p class="p-last-seen">
+											<span class="last-seen <?php echo (is_user_online($k->last_seen)) ? 'last-seen-online' : ''; ?>"> <i class="icon-circle"></i> <?php echo trans("last_seen"); ?>&nbsp;<?php echo time_ago($k->last_seen); ?></span>
+										</p>
+									</div>
+
+								</span>
 							<?php endif; ?>
-
-
 						</div>
 						<div class="panel-body">
-							<div class="jumbotron">
+							<!-- <div class="jumbotron"> -->
 								<center> <img src="<?= base_url($k->avatar) ?>" alt="Tidak Ada Logo" class="img-responsive" alt="Responsive image">
 								</center>
 								<p>
@@ -54,26 +59,45 @@
 								</p>
 								<center>
 									<!-- total start di postingan -->
-									<button type="button" class="btn btn-info btn-lg"> <span class="glyphicon glyphicon-star"> </span> <?= ucwords($k->star) ?></button>
-									<a class="btn btn-primary btn-lg" href="#" role="button"><span class="glyphicon glyphicon-thumbs-up"></span></a>
+									<button type="button" class="btn btn-info "> <span class="glyphicon glyphicon-star"> </span> <?= ucwords($k->star) ?></button>
+									<a class="btn btn-primary " href="#" role="button"><span class="glyphicon glyphicon-thumbs-up"></span></a>
+									<?php if ($this->auth_check) : ?>
+										<?php if ($this->auth_user->id != $k->id) : ?>
+											<!--form follow-->
+											<?php echo form_open('profile_controller/follow_unfollow_user', ['class' => 'form-inline']); ?>
+											<input type="hidden" name="following_id" value="<?php echo $k->id; ?>">
+											<?php if (is_user_follows($k->id, $this->auth_user->id)) : ?>
+												<button class="btn  btn-custom btn-follow"><i class="icon-user-plus"></i><?php echo trans("unfollow"); ?></button>
+											<?php else : ?>
+												<button class="btn  btn-custom btn-follow"><i class="icon-user-plus"></i><?php echo trans("follow"); ?></button>
+											<?php endif; ?>
+											<?php echo form_close(); ?>
+										<?php endif; ?>
+									<?php else : ?>
+										<a href="<?php echo lang_base_url(); ?>login" class="btn btn-md btn-custom btn-follow"><i class="icon-user-plus"></i><?php echo trans("follow"); ?></a>
+									<?php endif; ?>
 									<br>
 									<br>
 									<?php if ($k->role != 'admin') : ?>
 										Tanggal Booking: <br>
-										<span class="badge badge-info"><?= date("d-m-Y") ?></span>
-										<span class="badge badge-info"><?= date("d-m-Y") ?></span>
-										<span class="badge badge-info"><?= date("d-m-Y") ?></span>
-										<span class="badge badge-info"><?= date("d-m-Y") ?></span>
+										<?php foreach ($j as $ji) { ?>
+											<span class="badge badge-info"><?= date($ji->tanggal) ?></span>
+										<?php } ?>
 									<?php endif; ?>
+									<div class="row-custom">
+										<p class="description">
+											<?php echo html_escape($k->about_me); ?>
+										</p>
+									</div>
 								</center>
-							</div>
+								
+							<!-- </div> -->
 						</div>
 					</div>
 					<ul class="nav nav-pills">
 						<li role="presentation" class="active"><a href="#posting" data-toggle="tab">Posting</a></li>
-						<li role="presentation"><a href="#gallery" data-toggle="tab">Gallery</a></li>
+						<li role="presentation"><a href="#followers" data-toggle="tab"><?php echo trans("followers"); ?>&nbsp;(<?php echo count($followers); ?>)</a></li>
 					</ul>
-
 					<div class="tab-content">
 						<div id="posting" class="tab-pane fade in active">
 							<section id="main" class="margin-top-30">
@@ -124,12 +148,63 @@
 							</section>
 						</div>
 
-						<div id="gallery" class="tab-pane fade">
-							Galery
+						<div id="followers" class="tab-pane fade">
+							
+						<div class="widget-followers">
+										<div class="widget-head">
+											<h3 class="title"><?php echo trans("followers"); ?>&nbsp;(<?php echo count($followers); ?>)</h3>
+										</div>
+										<div class="widget-body">
+											<div class="widget-content custom-scrollbar-followers">
+												<div class="row">
+													<div class="col-sm-12">
+														<?php if (!empty($followers)):
+															foreach ($followers as $item):?>
+																<div class="img-follower">
+																	<a href="<?php echo lang_base_url() . "profile/" . html_escape($item->slug); ?>">
+																		<img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACwAAAAAAQABAAACAkQBADs=" data-src="<?php echo get_user_avatar($item); ?>" alt="<?php echo html_escape($item->username); ?>" class="img-responsive lazyload">
+																	</a>
+																</div>
+															<?php endforeach;
+														endif; ?>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!-- <div class="social">
+										<ul>
+											<?php if (!empty($k->facebook_url)) : ?>
+												<li><a href="<?php echo $k->facebook_url; ?>" target="_blank"><i class="icon-facebook"></i></a></li>
+											<?php endif;
+											if (!empty($k->twitter_url)) : ?>
+												<li><a href="<?php echo $k->twitter_url; ?>" target="_blank"><i class="icon-twitter"></i></a></li>
+											<?php endif;
+											if (!empty($k->instagram_url)) : ?>
+												<li><a href="<?php echo $k->instagram_url; ?>" target="_blank"><i class="icon-instagram"></i></a></li>
+											<?php endif;
+											if (!empty($k->pinterest_url)) : ?>
+												<li><a href="<?php echo $k->pinterest_url; ?>" target="_blank"><i class="icon-pinterest"></i></a></li>
+											<?php endif;
+											if (!empty($k->linkedin_url)) : ?>
+												<li><a href="<?php echo $k->linkedin_url; ?>" target="_blank"><i class="icon-linkedin"></i></a></li>
+											<?php endif;
+											if (!empty($k->vk_url)) : ?>
+												<li><a href="<?php echo $k->vk_url; ?>" target="_blank"><i class="icon-vk"></i></a></li>
+											<?php endif;
+											if (!empty($k->telegram_url)) : ?>
+												<li><a href="<?php echo $k->telegram_url; ?>" target="_blank"><i class="icon-telegram"></i></a></li>
+											<?php endif;
+											if (!empty($k->youtube_url)) : ?>
+												<li><a href="<?php echo $k->youtube_url; ?>" target="_blank"><i class="icon-youtube"></i></a></li>
+											<?php endif; ?>
+										</ul>
+									</div> -->
+
+								</div>
+
 						</div>
 					</div>
-
-
 				</div>
 			</div>
 		</div>

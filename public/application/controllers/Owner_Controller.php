@@ -55,7 +55,10 @@ class Owner_Controller extends Home_Core_Controller
 
 
 		$data['k'] = $this->auth_model->get_group_id($id);
-		$data['title'] = trans("login");
+		$data['j'] = $this->owner_model->get_jadwal($id);
+
+		$data["following"] = $this->profile_model->get_following_users($id);
+		$data["followers"] = $this->profile_model->get_followers($id);		$data['title'] = trans("login");
 		$data['description'] = trans("login") . " - " . $this->settings->application_name;
 		$data['keywords'] = trans("login") . "," . $this->settings->application_name;
 

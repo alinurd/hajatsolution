@@ -14,6 +14,7 @@
 				</ol>
 			</div>
 			<div class="page-content">
+				<div class="container">
 				<div class="row ">
 					<?php foreach ($data as $k) { ?>
 						<div class="col-xs-6 col-sm-4 col-md-3">
@@ -21,7 +22,7 @@
 							<div class="panel-heading"><?= ucwords($k->group) ?></div>
 								<div class="panel-body">
 									<center>
-									<img src="<?= base_url($k->avatar) ?>" alt="Tidak Ada Logo" width="150" height="130">
+									<!-- <img src="<?= base_url($k->avatar) ?>" alt="Tidak Ada Logo" width="150" height="130"> -->
 										<br><span style="font-size: 10px;"> <b>Pimpinan: <?= strtoupper($k->pimpinan) ?></b></span><br>
 										<span class="badge badge-primary"><?=$k->kategori_nama?></span>
 									</center>
@@ -37,6 +38,7 @@
 							</div>
 						</div>
 					<?php } ?>
+				</div>
 				</div>
 			</div>
 		</div>
