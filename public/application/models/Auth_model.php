@@ -495,7 +495,6 @@ class Auth_model extends CI_Model
     }
     public function get_group_id($id)
     {
-        $id = str_replace(array('{', '}'), '', $id);
 
         $this->db->select('users.*, categories.name as kategori_nama');
         $this->db->from('users');

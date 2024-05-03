@@ -14,7 +14,7 @@
 						<a href="<?php echo base_url('owner'); ?>">Owner</a>
 					</li>
 					<li class="breadcrumb-item">
-						<a href="#">Detail-> <?= ucwords($k->slug) ?></a>
+						<a href="#">Detail</a>
 					</li>
 					<li class="breadcrumb-item active"> <b><?= ucwords($k->slug) ?></b></li>
 				</ol>

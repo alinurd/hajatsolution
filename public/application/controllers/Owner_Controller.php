@@ -27,6 +27,8 @@ class Owner_Controller extends Home_Core_Controller
 	}
 	public function detail($id)
 	{
+		$id = str_replace(array('{', '}'), '', $id);
+
 		 //slider posts
 		 $this->slider_posts = get_cached_data('slider_posts');
 		 if (empty($this->slider_posts)) {
@@ -46,7 +48,7 @@ class Owner_Controller extends Home_Core_Controller
 		 $pagination = $this->paginate(lang_base_url(), $total_rows);
 		 $data['posts'] = get_cached_data($posts_key . '_page' . $pagination['current_page']);
 		 if (empty($data['posts'])) {
-			 $data['posts'] = $this->post_model->get_paginated_posts($pagination['per_page'], $pagination['offset']);
+			 $data['posts'] = $this->post_model->get_paginated_user_posts($id, $pagination['per_page'], $pagination['offset']);
 			 set_cache_data($posts_key . '_page' . $pagination['current_page'], $data['posts']);
 		 }
 
