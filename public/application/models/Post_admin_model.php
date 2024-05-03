@@ -537,4 +537,31 @@ class Post_admin_model extends CI_Model
         }
 
     }
+
+    public function booking_values()
+    {
+        $data = array(
+            'nama' => remove_forbidden_characters($this->input->post('nama', true)),
+            'tenor' => remove_forbidden_characters($this->input->post('tenor', true)),
+            'tanggal_acara' => remove_forbidden_characters($this->input->post('tgl', true)),
+            'hp' => remove_forbidden_characters($this->input->post('hp', true)),
+            'email' => remove_forbidden_characters($this->input->post('email', true)),
+            'alamat' => remove_forbidden_characters($this->input->post('alamat', true)),
+            'group_id' => remove_forbidden_characters($this->input->post('group_id', true)),
+            'post_id' => remove_forbidden_characters($this->input->post('post_id', true)),
+         );
+        return $data;
+    }
+    
+    public function insert_booking()
+    {
+                
+        $data = $this->auth_model->input_values();
+        
+         $data['token'] = generate_unique_id();
+        $data['code'] = generate_code_trans();
+        $data["created_at"] = date('Y-m-d H:i:s');
+        return $this->db->insert('booking', $data);
+    }
+
 }

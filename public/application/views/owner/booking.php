@@ -39,8 +39,10 @@
 										</div>
 									</div>
 								</div>
-
-
+								<?php echo form_open_multipart('owner_controller/add_booking'); ?>
+								<?php $this->load->view('admin/includes/_messages'); ?>
+								<input type="hidden" name="group_id" value="<?php echo $k->user_id; ?>">
+								<input type="hidden" name="post_id" value="<?php echo $k->id_post; ?>">
 								<div class="list-group">
 									<div class="form-group">
 										<label class="control-label">Nama Lengkap:</label>
@@ -48,11 +50,15 @@
 									</div>
 									<div class="form-group">
 										<label class="control-label">Whatsapp :</label>
-										<input type="number" class="form-control" name="wa" placeholder="Nomor Whatsapp" required>
+										<input type="number" class="form-control" name="hp" placeholder="Nomor Whatsapp" required>
+									</div>
+									<div class="form-group">
+										<label class="control-label">Email :</label>
+										<input type="email" class="form-control" name="email" placeholder="masukan email yang aktif, semua notifikasi akan di kirim ke email" required>
 									</div>
 									<div class="form-group">
 										<label class="control-label">Tanggal Acara :</label>
-										<input type="date" class="form-control" name="wa" placeholder="Nomor Whatsapp" required>
+										<input type="date" class="form-control" name="tgl"  required>
 									</div>
 
 									<div class="form-group">
@@ -61,22 +67,22 @@
 												<label>Tenor Pembayaran :</label>
 											</div>
 											<div class="col-md-2 col-sm-4 col-xs-12 col-option">
-												<input type="radio" id="rb_status_1" name="status" value="1" class="square-purple" checked>
-												<label for="rb_status_1" class="cursor-pointer">1 Kali</label>
+												<input type="radio" id="rb_tenor_1" name="tenor" value="1" class="square-purple" checked>
+												<label for="rb_tenor_1" class="cursor-pointer">1 Kali</label>
 											</div>
 											<div class="col-md-2 col-sm-4 col-xs-12 col-option">
-												<input type="radio" id="rb_status_2" name="status" value="0" class="square-purple">
-												<label for="rb_status_2" class="cursor-pointer">2 Kali</label>
+												<input type="radio" id="rb_tenor_2" name="tenor" value="0" class="square-purple">
+												<label for="rb_tenor_2" class="cursor-pointer">2 Kali</label>
 											</div>
 											<div class="col-md-2 col-sm-4 col-xs-12 col-option">
-												<input type="radio" id="rb_status_2" name="status" value="0" class="square-purple">
-												<label for="rb_status_2" class="cursor-pointer">3 Kali</label>
+												<input type="radio" id="rb_tenor_2" name="tenor" value="0" class="square-purple">
+												<label for="rb_tenor_2" class="cursor-pointer">3 Kali</label>
 											</div>
 										</div>
 
 										<div class="form-group">
 											<label class="control-label">Alamat Lengkap:</label>
-											<textarea class="form-control text-area" name="question" placeholder="Contoh:  Kampung Baru RT 001 RW 002, Desa Mulya, Kecamatan Sejahtera, Kabupaten Maju Jaya, Provinsi Sejahtera " <?php echo ($rtl == true) ? 'dir="rtl"' : ''; ?> required><?php echo old('question'); ?></textarea>
+											<textarea class="form-control text-area" name="alamat" placeholder="Contoh:  Kampung Baru RT 001 RW 002, Desa Mulya, Kecamatan Sejahtera, Kabupaten Maju Jaya, Provinsi Sejahtera " <?php echo ($rtl == true) ? 'dir="rtl"' : ''; ?> required><?php echo old('alamat'); ?></textarea>
 
 										</div>
 
@@ -102,6 +108,8 @@
 									</div>
 								</div>
 							</div>
+							<?php echo form_close(); ?>
+
 						</div>
 
 

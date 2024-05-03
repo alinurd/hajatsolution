@@ -774,6 +774,18 @@ if (!function_exists('generate_unique_id')) {
     }
 }
 
+//generate unique id
+if (!function_exists('generate_code_trans')) {
+    function generate_code_trans()
+    {
+        $id = uniqid("", TRUE);
+        $id = str_replace(".", "-", $id);
+        $id = substr($id, -8); // Mengambil 8 karakter terakhir
+        return $id . "-" . rand(1000, 9999); // Menambahkan 4 digit random
+    }
+}
+
+
 //generate slug
 if (!function_exists('str_slug')) {
     function str_slug($str)

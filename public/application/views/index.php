@@ -4,6 +4,7 @@ if (!empty($site_layout)) {
 } ?>
 
 <h1 class="title-index"><?php echo html_escape($home_title); ?></h1>
+<?php $this->load->view('admin/includes/_messages'); ?>
 
 <?php if ($layout == "layout_1" || $layout == "layout_2" || $layout == "layout_3"):
     if (!empty($this->slider_posts)):?>

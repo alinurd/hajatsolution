@@ -28,9 +28,6 @@ class Post_controller extends Admin_Core_Controller
 		$this->load->view('admin/includes/_footer');
 	}
 
-	/**
-	 * Add Post Post
-	 */
 	public function add_post_post()
 	{
 		//validate inputs
@@ -451,5 +448,34 @@ class Post_controller extends Admin_Core_Controller
 	{
 		set_session('pagination_per_page', $count);
 		redirect($this->agent->referrer());
+	}
+
+
+	public function booking_post()
+	{
+		//validate inputs
+		$this->form_validation->set_rules('nama', trans("nama"), 'required|xss_clean');
+		$this->form_validation->set_rules('tenor', trans("tenor"), 'required|xss_clean');
+		$this->form_validation->set_rules('tgl', trans("tgl"), 'required|xss_clean');
+		$this->form_validation->set_rules('hp', trans("hp"), 'required|xss_clean|min_length[12]|max_length[16]');
+		$this->form_validation->set_rules('alamat', trans("alamat"), 'required|xss_clean|min_length[15]');
+		$this->form_validation->set_rules('email', trans("email"), 'required|xss_clean|max_length[200]');
+
+		if ($this->form_validation->run() === false) {
+			$this->session->set_flashdata('errors', validation_errors());
+			$this->session->set_flashdata('form_data', $this->post_admin_model->booking_values());
+			redirect($this->agent->referrer());
+		} else {
+			//if post added
+			if ($this->post_admin_model->insert_booking()) {
+				 
+				$this->session->set_flashdata('success', trans("post") . " " . trans("msg_suc_added"));
+				redirect($this->agent->referrer());
+			} else {
+				$this->session->set_flashdata('form_data', $this->post_admin_model->booking_values());
+				$this->session->set_flashdata('error', trans("msg_error"));
+				redirect($this->agent->referrer());
+			}
+		}
 	}
 }
