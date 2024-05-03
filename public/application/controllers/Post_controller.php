@@ -35,6 +35,8 @@ class Post_controller extends Admin_Core_Controller
 	{
 		//validate inputs
 		$this->form_validation->set_rules('title', trans("title"), 'required|xss_clean|max_length[500]');
+		$this->form_validation->set_rules('harga', 'Harga', 'required|xss_clean');
+		$this->form_validation->set_rules('komisi', 'Komisi', 'required|xss_clean|greater_than_equal_to[5]');
 		$this->form_validation->set_rules('summary', trans("summary"), 'xss_clean|max_length[5000]');
 		$this->form_validation->set_rules('category_id', trans("category"), 'required');
 		$this->form_validation->set_rules('optional_url', trans("optional_url"), 'xss_clean|max_length[1000]');

@@ -19,7 +19,9 @@ class Post_admin_model extends CI_Model
             'optional_url' => $this->input->post('optional_url', true),
             'need_auth' => $this->input->post('need_auth', true),
             'is_slider' => $this->input->post('is_slider', true),
-            'is_picked' => $this->input->post('is_picked', true)
+            'is_picked' => $this->input->post('is_picked', true),
+            'harga' => $this->input->post('harga', true),
+            'komisi' => $this->input->post('komisi', true)
         );
         return $data;
     }
