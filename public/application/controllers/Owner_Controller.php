@@ -16,9 +16,10 @@ class Owner_Controller extends Home_Core_Controller
 	{
 	 
 
-		$data['title'] = "Owner";
-		$data['description'] = "Owner" ;
-		$data['keywords'] = "Owner" ;
+		$data['title'] = "Group";
+		$data['description'] = "Group" ;
+		$data['keywords'] = "Group" ;
+        $data['data'] = $this->auth_model->get_group();
 
 		$this->load->view('partials/_header', $data);
 		$this->load->view('owner/index');

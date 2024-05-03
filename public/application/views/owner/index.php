@@ -15,22 +15,22 @@
 			</div>
 			<div class="page-content">
 				<div class="row ">
-					<?php for ($i = 0; $i < 20; $i++) { ?>
+					<?php foreach ($data as $k) { ?>
 						<div class="col-xs-6 col-sm-4 col-md-3">
 							<div class="panel panel-primary">
-								<div class="panel-heading">Owner Name</div>
+							<div class="panel-heading"><?= ucwords($k->group) ?></div>
 								<div class="panel-body">
 									<center>
-										<img src="https://picsum.photos/150/130" alt="..."><br>
-										<span style="font-size: 10px; font-style: italic;">Hiburan, dekoarsi, potografi</span>
+									<img src="<?= base_url($k->avatar) ?>" alt="Tidak Ada Logo" width="150" height="130">
+										<br><span style="font-size: 10px;"> <b>Pimpinan: <?= strtoupper($k->pimpinan) ?></b></span><br>
+										<span class="badge badge-primary"><?=$k->kategori?></span>
 									</center>
 								</div>
 								<div class="panel-footer">
 									<center>
 										<div class="btn-group" role="group" aria-label="...">
-											<button type="button" class="btn btn-info"> <span class="glyphicon glyphicon-star"> </span> 89</button>
- 
-											<a href="<?php echo base_url('owner/detail/12'); ?>" class="btn btn-default" type="button">Detail</a>
+											<button type="button" class="btn btn-info"> <span class="glyphicon glyphicon-star"> </span> <?=$k->star?></button>
+											<a href="<?php echo base_url('owner/detail/'.$k->id); ?>" class="btn btn-default" type="button">Detail</a>
 	 										</div>
 									</center>
 								</div>

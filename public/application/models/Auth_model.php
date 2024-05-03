@@ -481,6 +481,14 @@ class Auth_model extends CI_Model
         $query = $this->db->get('users');
         return $query->result();
     }
+    public function get_group()
+    {
+        $this->db->where('role =', 'author');
+        $this->db->where('status !=',0);
+        $this->db->where('avatar !=',null);
+        $query = $this->db->get('users');
+        return $query->result();
+    }
 
     //get last users
     public function get_last_users()
