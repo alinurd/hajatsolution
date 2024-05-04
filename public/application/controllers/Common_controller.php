@@ -63,6 +63,38 @@ class Common_controller extends Core_Controller
             }
         }
     }
+    public function admin_login_post_booking()
+    {
+        post_method();
+        $this->load->library('bcrypt');
+        //validate inputs
+        $this->form_validation->set_rules('username', trans("username"), 'required|xss_clean|max_length[150]');
+        $this->form_validation->set_rules('password', trans("form_password"), 'required|xss_clean|max_length[128]');
+
+        if ($this->form_validation->run() == false) {
+            $this->session->set_flashdata('errors', validation_errors());
+            $this->session->set_flashdata('form_data', $this->auth_model->input_values());
+            redirect($this->agent->referrer());
+        } else {
+            $username = $this->input->post('username', true);
+            $user = $this->auth_model->get_user_by_username($username);
+            if (empty($user)) {
+                $user = $this->auth_model->get_user_by_email($username);
+            }
+            if (!empty($user) && $user->role != 'admin' && $this->general_settings->maintenance_mode_status == 1) {
+                $this->session->set_flashdata('error', "Site under construction! Please try again later.");
+                redirect($this->agent->referrer());
+            }
+            if ($this->auth_model->login()) {
+                redirect($this->input->post('base_url', true));
+            } else {
+                //error
+                $this->session->set_flashdata('form_data', $this->auth_model->input_values());
+                $this->session->set_flashdata('error', trans("login_error"));
+                redirect($this->agent->referrer());
+            }
+        }
+    }
 
 
     /**

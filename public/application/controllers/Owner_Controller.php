@@ -73,6 +73,7 @@ class Owner_Controller extends Home_Core_Controller
 
 		$k = $this->post_model->get_post_and_user_by_post_id($id);
 		$data['k'] = $k;
+		$data['id'] = $id;
 		$data['title'] = "Booking-" . $k->title;
 		$data['description'] = "Booking-" . $k->title . " - " . $this->settings->application_name;
 		$data['keywords'] = "Booking-" . $k->title . "," . $this->settings->application_name;
