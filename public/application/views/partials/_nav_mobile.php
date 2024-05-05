@@ -30,6 +30,10 @@
                     <li class="nav-item">
                         <a href="<?php echo lang_base_url(); ?>" class="nav-link"><?php echo trans("home"); ?></a>
                     </li>
+                    <li class="nav-item <?php echo ($active_page == 'owner') ? 'active' : ''; ?>">
+                <a href="<?php echo base_url('owner'); ?>" class="nav-link">Owner</a>
+            </li>
+
 
                     <?php if (!empty($this->menu_links)):
                         foreach ($this->menu_links as $menu_item):
